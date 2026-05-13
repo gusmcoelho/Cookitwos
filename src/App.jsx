@@ -12,7 +12,9 @@ import Reviews from './components/Reviews';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import CookieConsent from './components/CookieConsent';
+import Contact from './components/Contact';
 import Intro from './components/Intro';
+
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -54,6 +56,7 @@ function App() {
       <Flavors />
       <Ingredients />
       <Reviews />
+      <Contact />
       <Location />
       <Team />
       <Footer />
