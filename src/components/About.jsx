@@ -7,7 +7,7 @@ const About = () => {
       <div className="container">
         <div className="about-header text-center">
           <span className="section-tag">Desde 2026</span>
-          <h2 className="section-title">A Tradição da Confeitaria</h2>
+          <h2 className="section-title">Nossa Empresa</h2>
         </div>
 
         <div className="about-grid">
