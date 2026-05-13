@@ -1,3 +1,33 @@
+.section-red {
+    background-color: var(--color-red);
+    color: white;
+}
+
+.section-red .section-title,
+.section-red .contact-subtitle,
+.section-red .contact-item h4,
+.section-red .contact-item p {
+    color: white !important;
+}
+
+.section-red .contact-icon {
+    background: white;
+    color: var(--color-red);
+}
+
+.section-red .section-tag {
+    color: white;
+}
+
+.section-red .section-tag::before, 
+.section-red .section-tag::after {
+    color: white;
+}
+
+.section-red .contact-form {
+    border-color: white;
+}
+
 .contact-layout {
     display: grid;
     grid-template-columns: 1fr 1.2fr;

@@ -51,7 +51,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section bg-bg">
+    <section id="contact" className="section section-red">
       <div className="container">
         <div className="contact-layout">
           <div className="contact-info animate-fade-up">
