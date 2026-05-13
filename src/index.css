@@ -76,7 +76,16 @@ h1, h2, h3, h4 {
   padding: 0 5%;
 }
 
-.section { padding: 6rem 0; }
+.section { padding: 6rem 0; position: relative; }
+
+/* Decorativo: Linha Vermelha de Transição */
+.bg-navy {
+  border-top: 12px solid var(--color-red);
+}
+
+.section-red {
+  border-top: 12px solid var(--color-navy);
+}
 
 /* Classic Buttons */
 .btn {
