@@ -1,0 +1,112 @@
+.carousel-section {
+  background: var(--color-navy); 
+  padding: 6rem 0; /* Simetria absoluta restaurada */
+  overflow: hidden;
+  border-top: 4px solid var(--color-red);
+  border-bottom: 4px solid var(--color-red);
+  position: relative;
+  box-shadow: inset 0 15px 30px rgba(0,0,0,0.3), inset 0 -15px 30px rgba(0,0,0,0.3);
+}
+
+/* Camada de textura de grão de filme */
+.carousel-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 1;
+  filter: contrast(150%) brightness(100%);
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: visible; /* Mudado para visible para não cortar o zoom das fotos */
+  pointer-events: none; /* Container não bloqueia */
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+  align-items: flex-start;
+  gap: 5rem;
+  pointer-events: auto; /* Apenas o trilho recebe o mouse */
+  padding: 40px 0; /* Espaço para o salto da foto */
+}
+
+.carousel-item {
+  width: 200px; /* Reduzido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Inclinação alternada estilo mural */
+.carousel-item:nth-child(even) { transform: rotate(-2deg); }
+.carousel-item:nth-child(odd) { transform: rotate(2deg); }
+
+.carousel-item img {
+  width: 100%;
+  height: 250px; /* Reduzido de 320px */
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  filter: grayscale(100%) brightness(0.8);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.carousel-item:hover,
+.carousel-item.auto-focused {
+  transform: scale(1.15) translateY(-20px) !important;
+  z-index: 100;
+  cursor: pointer;
+}
+
+/* Efeito Bokeh: Desfoca os outros quando um ganha o foco */
+.carousel-track:has(.auto-focused) .carousel-item:not(.auto-focused) {
+  filter: blur(3px) brightness(0.6) grayscale(20%);
+  transform: scale(0.9);
+}
+
+.carousel-item:hover img,
+.carousel-item.auto-focused img {
+  filter: grayscale(0%) brightness(1.1);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  border-color: white;
+  border-width: 2px;
+}
+
+/* Legendas elegantes */
+.carousel-item::after {
+  content: attr(data-caption);
+  margin-top: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: white;
+  opacity: 0.8;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@keyframes gradient-pulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 768px) {
+  .carousel-section { padding: 4rem 0; overflow: hidden; }
+  .carousel-item { width: 130px; }
+  .carousel-item img { height: 150px; }
+  .carousel-track { gap: 1.5rem; padding: 20px 0; }
+  .carousel-item::after { font-size: 0.5rem; letter-spacing: 1px; bottom: 10px; }
+  .carousel-item.auto-focused { transform: translateY(-10px) scale(1.1); }
+}

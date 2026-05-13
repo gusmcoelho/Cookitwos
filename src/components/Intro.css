@@ -1,0 +1,89 @@
+/* src/components/Intro.css */
+
+.intro-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* As Cortinas (Fitas Verticais / Barras) */
+.intro-ribbon {
+  position: absolute;
+  top: 0;
+  width: 21vw; /* 21% para evitar frestas de 1px */
+  height: 100vh;
+  background-color: var(--color-navy);
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 1;
+}
+
+/* Posicionamento das 5 fitas */
+.intro-ribbon:nth-child(1) { left: 0%; }
+.intro-ribbon:nth-child(2) { left: 20%; }
+.intro-ribbon:nth-child(3) { left: 40%; }
+.intro-ribbon:nth-child(4) { left: 60%; }
+.intro-ribbon:nth-child(5) { left: 80%; }
+
+/* Escalonamento da saída (Delay na Subida como um piano) */
+.intro-overlay.ribbons-up .intro-ribbon:nth-child(1) { transition-delay: 0.0s; transform: translateY(-100%); }
+.intro-overlay.ribbons-up .intro-ribbon:nth-child(2) { transition-delay: 0.1s; transform: translateY(-100%); }
+.intro-overlay.ribbons-up .intro-ribbon:nth-child(3) { transition-delay: 0.2s; transform: translateY(-100%); }
+.intro-overlay.ribbons-up .intro-ribbon:nth-child(4) { transition-delay: 0.3s; transform: translateY(-100%); }
+.intro-overlay.ribbons-up .intro-ribbon:nth-child(5) { transition-delay: 0.4s; transform: translateY(-100%); }
+
+/* Conteúdo Central */
+.intro-content {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+.intro-content.fade-out {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.intro-logo {
+  width: 250px;
+  max-width: 80vw;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+  opacity: 0;
+  animation: slowFadeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.intro-love-text {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.text-white { color: white; }
+.text-red { color: var(--color-red); }
+
+.smooth-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slowFadeUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+}
+
+@keyframes slowFadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slowFadeUp {
+  0% { opacity: 0; transform: translateY(20px); letter-spacing: 2px; }
+  100% { opacity: 1; transform: translateY(0); letter-spacing: 5px; }
+}

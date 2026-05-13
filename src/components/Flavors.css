@@ -1,0 +1,86 @@
+.flavors-sub {
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.flavors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.flavor-card {
+  padding: 3rem 2rem;
+  border-radius: 15px;
+  text-align: center;
+  border: 1px solid rgba(0, 33, 71, 0.05);
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flavor-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 33, 71, 0.08);
+}
+
+.flavor-tag {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: white;
+  color: var(--color-red);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.flavor-image-crop {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1.5rem;
+  background-image: url('/images/flavors.png');
+  background-size: 300px 300px;
+  background-repeat: no-repeat;
+  mix-blend-mode: multiply; /* Faz o fundo branco desaparecer sobre as cores dos cards */
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+/* Posicionamento do Grid 2x2 */
+.crop-0 { background-position: 0 0; }         /* Top Left - Nutella */
+.crop-1 { background-position: -150px 0; }    /* Top Right - Red Velvet */
+.crop-2 { background-position: 0 -150px; }    /* Bottom Left - Double Chocolate */
+.crop-3 { background-position: -150px -150px; } /* Bottom Right - Oreo */
+
+.flavor-card h4 {
+  font-size: 1.5rem;
+  color: var(--color-navy);
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.flavor-card p {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .flavors-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .flavor-card {
+    padding: 2.5rem 1.5rem;
+  }
+}

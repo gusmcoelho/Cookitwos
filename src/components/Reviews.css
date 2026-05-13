@@ -1,0 +1,68 @@
+.marquee-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: marquee-left 80s linear infinite; /* Velocidade reduzida para leitura constante */
+}
+
+.track-reverse {
+  animation: marquee-right 80s linear infinite; /* Velocidade reduzida para leitura constante */
+}
+
+.review-card-mini {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 350px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 33, 71, 0.05);
+}
+
+.review-stars {
+  color: var(--color-red);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.review-text-mini {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-navy);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.review-name-mini {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Removido o hover para evitar o efeito de teleporte, mantendo velocidade constante e suave */
+
+@media (max-width: 768px) {
+  .review-card-mini {
+    width: 280px;
+    padding: 1.5rem;
+  }
+}
