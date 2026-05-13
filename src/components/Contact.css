@@ -147,6 +147,17 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+.contact-form .btn-primary {
+    background-color: var(--color-navy);
+    border-color: var(--color-navy);
+    color: white;
+}
+
+.contact-form .btn-primary:hover {
+    background-color: white;
+    color: var(--color-navy);
+}
+
 /* Responsividade */
 @media (max-width: 992px) {
     .contact-layout {
