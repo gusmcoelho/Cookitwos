@@ -10,7 +10,7 @@ const Intro = ({ onComplete }) => {
 
   const applySpeed = () => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 1.3;
+      videoRef.current.playbackRate = 1.7;
     }
   };
 
@@ -19,11 +19,11 @@ const Intro = ({ onComplete }) => {
     if (hasStarted) return;
     setHasStarted(true);
 
-    // Mostra o texto "COOKITWOS" após 1.8s do início real do play
+    // Mostra o texto "COOKITWOS" após 1.3s do início real do play
     if (textTimeoutRef.current) clearTimeout(textTimeoutRef.current);
     textTimeoutRef.current = setTimeout(() => {
       setShowText(true);
-    }, 1800);
+    }, 1300);
   };
 
   const handleVideoEnd = () => {
