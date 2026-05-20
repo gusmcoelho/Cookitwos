@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   background-color: var(--color-bg); /* fallback */
-  transition: opacity 1s ease, visibility 1s ease;
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   
   /* Evita que o cursor vire seleção de texto e bloqueia interações com o site de fundo durante a intro */
   pointer-events: auto;
@@ -59,7 +59,7 @@
   transform: translate(-50%, -50%) translateY(20px);
   z-index: 3;
   opacity: 0;
-  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
   text-align: center;
   pointer-events: none;
 }

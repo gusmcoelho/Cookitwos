@@ -10,7 +10,7 @@ const Intro = ({ onComplete }) => {
 
   const applySpeed = () => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 1.7;
+      videoRef.current.playbackRate = 2.2;
     }
   };
 
@@ -19,26 +19,26 @@ const Intro = ({ onComplete }) => {
     if (hasStarted) return;
     setHasStarted(true);
 
-    // Mostra o texto "COOKITWOS" após 1.3s do início real do play
+    // Mostra o texto "COOKITWOS" após 900ms do início real do play (com o vídeo a 2.2x)
     if (textTimeoutRef.current) clearTimeout(textTimeoutRef.current);
     textTimeoutRef.current = setTimeout(() => {
       setShowText(true);
-    }, 1300);
+    }, 900);
   };
 
   const handleVideoEnd = () => {
-    // Quando o vídeo acaba, esperamos 800ms para dar tempo de ler o texto antes do fade-out
+    // Quando o vídeo acaba, esperamos apenas 100ms para iniciar o fade-out
     setTimeout(() => {
       setStage('fading-out');
       setTimeout(() => {
         setStage('done');
         if (onComplete) onComplete();
-      }, 800); // tempo do fade out (opacidade de 1 para 0)
-    }, 800); // tempo de leitura após fim do vídeo
+      }, 500); // tempo do fade out (opacidade de 1 para 0)
+    }, 100); 
   };
 
   useEffect(() => {
-    // Fallback: se em 6 segundos a intro não tiver terminado por qualquer motivo (bloqueio do autoplay ou erro de rede),
+    // Fallback: se em 4 segundos a intro não tiver terminado por qualquer motivo,
     // força a conclusão para o usuário não ficar preso na tela de intro.
     const fallbackTimeout = setTimeout(() => {
       if (stage !== 'done') {
@@ -46,9 +46,9 @@ const Intro = ({ onComplete }) => {
         setTimeout(() => {
           setStage('done');
           if (onComplete) onComplete();
-        }, 800);
+        }, 500);
       }
-    }, 6000);
+    }, 4000);
 
     return () => {
       clearTimeout(fallbackTimeout);
