@@ -1,47 +1,62 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Intro.css';
 
 const Intro = ({ onComplete }) => {
   const [stage, setStage] = useState('entering');
+  const [showText, setShowText] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
-    // 0s: Logo e texto aparecem
-    // 1.8s: Conteúdo central começa a desaparecer
-    // 2.1s: As faixas verticais (barras de cabeleireiro) começam a subir escalonadas
-    // 3.5s: Intro é destruída
-    
-    const fadeTimeout = setTimeout(() => setStage('fading-content'), 1800);
-    const revealTimeout = setTimeout(() => setStage('revealing'), 2100);
-    const doneTimeout = setTimeout(() => {
-      setStage('done');
-      if (onComplete) onComplete();
-    }, 3500);
+    // Acelera o vídeo um pouquinho para caber mais ação em menos tempo
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.3;
+    }
+
+    // Mostra o texto "COOKITWOS" após 1.8s (logo após o biscoito quebrar)
+    const textTimeout = setTimeout(() => {
+      setShowText(true);
+    }, 1800);
+
+    // Força a saída após 4.2 segundos para dar tempo de ler o texto
+    const endTimeout = setTimeout(() => {
+      if (stage !== 'done') {
+        handleVideoEnd();
+      }
+    }, 4200);
 
     return () => {
-      clearTimeout(fadeTimeout);
-      clearTimeout(revealTimeout);
-      clearTimeout(doneTimeout);
+      clearTimeout(textTimeout);
+      clearTimeout(endTimeout);
     };
-  }, [onComplete]);
+  }, [stage]);
+
+  const handleVideoEnd = () => {
+    setStage('fading-out');
+    setTimeout(() => {
+      setStage('done');
+      if (onComplete) onComplete();
+    }, 800); // tempo do fade out
+  };
 
   if (stage === 'done') return null;
 
   return (
-    <div className={`intro-overlay ${stage === 'revealing' ? 'ribbons-up' : ''}`}>
-      {/* 5 Fitas Verticais (Barras de Cabeleireiro Clássicas) */}
-      <div className="intro-ribbon"></div>
-      <div className="intro-ribbon"></div>
-      <div className="intro-ribbon"></div>
-      <div className="intro-ribbon"></div>
-      <div className="intro-ribbon"></div>
+    <div className={`intro-overlay ${stage === 'fading-out' ? 'fade-out-overlay' : ''}`}>
+      <div className="intro-video-wrapper">
+        <video 
+          ref={videoRef}
+          className="intro-video"
+          src={`${import.meta.env.BASE_URL}Cookie_breaks_in_half_202605200313.mp4`}
+          autoPlay
+          muted
+          playsInline
+          onEnded={handleVideoEnd}
+        />
+      </div>
       
-      {/* Elementos Centrais */}
-      <div className={`intro-content ${stage === 'fading-content' || stage === 'revealing' ? 'fade-out' : ''}`}>
-        <img src={`${import.meta.env.BASE_URL}images/logo .png`} alt="Cookitwos" className="intro-logo" />
-        <p className="intro-love-text smooth-fade-up">
-          <span className="text-white">FEITO COM </span>
-          <span className="text-red">MUITO AMOR</span>
-        </p>
+      {/* Texto surgindo depois que o biscoito quebra */}
+      <div className={`intro-brand-overlay ${showText ? 'active' : ''}`}>
+        <h1 className="intro-brand-title">COOKITWOS</h1>
       </div>
     </div>
   );

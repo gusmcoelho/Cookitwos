@@ -10,53 +10,80 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--color-bg); /* fallback */
+  transition: opacity 1s ease, visibility 1s ease;
+  
+  /* Evita que o cursor vire seleção de texto e bloqueia interações com o site de fundo durante a intro */
+  pointer-events: auto;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.intro-overlay.fade-out-overlay {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Libera os cliques no site após a intro sumir */
+}
+
+.intro-video-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 580px;
+  max-width: 90vw;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  z-index: 1;
+  /* Mascara radial que suaviza as bordas transformando-as em transparência */
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 72%);
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 72%);
+}
+
+.intro-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.3); /* Zoom de 30% para tirar as marcas d'água das bordas */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Conteúdo Central */
+.intro-brand-overlay {
+  position: absolute;
+  top: 78%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(20px);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  text-align: center;
   pointer-events: none;
 }
 
-/* As Cortinas (Fitas Verticais / Barras) */
-.intro-ribbon {
-  position: absolute;
-  top: 0;
-  width: 21vw; /* 21% para evitar frestas de 1px */
-  height: 100vh;
-  background-color: var(--color-navy);
-  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
-  z-index: 1;
+.intro-brand-overlay.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) translateY(0);
 }
 
-/* Posicionamento das 5 fitas */
-.intro-ribbon:nth-child(1) { left: 0%; }
-.intro-ribbon:nth-child(2) { left: 20%; }
-.intro-ribbon:nth-child(3) { left: 40%; }
-.intro-ribbon:nth-child(4) { left: 60%; }
-.intro-ribbon:nth-child(5) { left: 80%; }
-
-/* Escalonamento da saída (Delay na Subida como um piano) */
-.intro-overlay.ribbons-up .intro-ribbon:nth-child(1) { transition-delay: 0.0s; transform: translateY(-100%); }
-.intro-overlay.ribbons-up .intro-ribbon:nth-child(2) { transition-delay: 0.1s; transform: translateY(-100%); }
-.intro-overlay.ribbons-up .intro-ribbon:nth-child(3) { transition-delay: 0.2s; transform: translateY(-100%); }
-.intro-overlay.ribbons-up .intro-ribbon:nth-child(4) { transition-delay: 0.3s; transform: translateY(-100%); }
-.intro-overlay.ribbons-up .intro-ribbon:nth-child(5) { transition-delay: 0.4s; transform: translateY(-100%); }
-
-/* Conteúdo Central */
-.intro-content {
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2.5rem;
-  transition: opacity 0.3s ease, transform 0.5s ease;
-}
-
-.intro-content.fade-out {
-  opacity: 0;
-  transform: scale(1.1);
+.intro-brand-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsivo */
+  color: var(--color-navy);
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 700;
+  text-shadow: 0 4px 12px rgba(0, 33, 71, 0.05); /* Sombra elegante azul marinho sutil */
 }
 
 .intro-logo {
-  width: 250px;
-  max-width: 80vw;
-  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+  width: 160px;
+  max-width: 60vw;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.8));
   opacity: 0;
   animation: slowFadeIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
@@ -67,6 +94,7 @@
   letter-spacing: 5px;
   text-transform: uppercase;
   margin: 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .text-white { color: white; }
@@ -86,4 +114,26 @@
 @keyframes slowFadeUp {
   0% { opacity: 0; transform: translateY(20px); letter-spacing: 2px; }
   100% { opacity: 1; transform: translateY(0); letter-spacing: 5px; }
+}
+
+/* Suporte para Mobile */
+@media (max-width: 768px) {
+  .intro-video-wrapper {
+    width: 85vw;
+    aspect-ratio: 3/4; /* Formato vertical (tipo story) fica excelente no celular */
+  }
+
+  .intro-video {
+    /* Diminui o zoom para 1.1x no mobile, pois o object-fit: cover já corta bastante as laterais */
+    transform: translate(-50%, -50%) scale(1.1); 
+  }
+
+  .intro-brand-overlay {
+    top: 84%; /* Ajusta o texto mais para baixo no mobile para não colar na caixa vertical do vídeo */
+  }
+
+  .intro-brand-title {
+    font-size: 1.8rem;
+    letter-spacing: 6px;
+  }
 }
