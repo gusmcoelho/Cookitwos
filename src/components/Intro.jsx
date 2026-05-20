@@ -4,39 +4,57 @@ import './Intro.css';
 const Intro = ({ onComplete }) => {
   const [stage, setStage] = useState('entering');
   const [showText, setShowText] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const videoRef = useRef(null);
+  const textTimeoutRef = useRef(null);
 
-  useEffect(() => {
-    // Acelera o vídeo um pouquinho para caber mais ação em menos tempo
+  const applySpeed = () => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 1.3;
     }
+  };
 
-    // Mostra o texto "COOKITWOS" após 1.8s (logo após o biscoito quebrar)
-    const textTimeout = setTimeout(() => {
+  const handlePlay = () => {
+    applySpeed();
+    if (hasStarted) return;
+    setHasStarted(true);
+
+    // Mostra o texto "COOKITWOS" após 1.8s do início real do play
+    if (textTimeoutRef.current) clearTimeout(textTimeoutRef.current);
+    textTimeoutRef.current = setTimeout(() => {
       setShowText(true);
     }, 1800);
-
-    // Força a saída após 4.2 segundos para dar tempo de ler o texto
-    const endTimeout = setTimeout(() => {
-      if (stage !== 'done') {
-        handleVideoEnd();
-      }
-    }, 4200);
-
-    return () => {
-      clearTimeout(textTimeout);
-      clearTimeout(endTimeout);
-    };
-  }, [stage]);
+  };
 
   const handleVideoEnd = () => {
-    setStage('fading-out');
+    // Quando o vídeo acaba, esperamos 800ms para dar tempo de ler o texto antes do fade-out
     setTimeout(() => {
-      setStage('done');
-      if (onComplete) onComplete();
-    }, 800); // tempo do fade out
+      setStage('fading-out');
+      setTimeout(() => {
+        setStage('done');
+        if (onComplete) onComplete();
+      }, 800); // tempo do fade out (opacidade de 1 para 0)
+    }, 800); // tempo de leitura após fim do vídeo
   };
+
+  useEffect(() => {
+    // Fallback: se em 6 segundos a intro não tiver terminado por qualquer motivo (bloqueio do autoplay ou erro de rede),
+    // força a conclusão para o usuário não ficar preso na tela de intro.
+    const fallbackTimeout = setTimeout(() => {
+      if (stage !== 'done') {
+        setStage('fading-out');
+        setTimeout(() => {
+          setStage('done');
+          if (onComplete) onComplete();
+        }, 800);
+      }
+    }, 6000);
+
+    return () => {
+      clearTimeout(fallbackTimeout);
+      if (textTimeoutRef.current) clearTimeout(textTimeoutRef.current);
+    };
+  }, [stage, onComplete]);
 
   if (stage === 'done') return null;
 
@@ -50,6 +68,9 @@ const Intro = ({ onComplete }) => {
           autoPlay
           muted
           playsInline
+          onPlay={handlePlay}
+          onPlaying={handlePlay}
+          onLoadedMetadata={applySpeed}
           onEnded={handleVideoEnd}
         />
       </div>
