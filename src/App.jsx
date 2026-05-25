@@ -1,3 +1,4 @@
+// O site de verdade: junta todos os pedaços (componentes) e gerencia animações
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
