@@ -1,3 +1,4 @@
+// Seção mostrando onde a loja fica (endereço e mapa)
 import React from 'react';
 import './Location.css';
 
