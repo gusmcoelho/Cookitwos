@@ -1,3 +1,4 @@
+// Avaliações dos clientes (as estrelinhas)
 import React from 'react';
 import './Reviews.css';
 
