@@ -1,3 +1,4 @@
+// Carrossel de imagens giratório
 import React, { useEffect, useRef, memo } from 'react';
 import './Carousel.css';
 
