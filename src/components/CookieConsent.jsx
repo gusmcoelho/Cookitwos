@@ -1,3 +1,4 @@
+// Aviso de permissão de cookies (LGPD)
 import React, { useState, useEffect } from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import './CookieConsent.css';
