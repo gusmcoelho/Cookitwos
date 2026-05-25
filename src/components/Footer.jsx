@@ -1,3 +1,4 @@
+// Rodapé do site com links úteis
 import React from 'react';
 import './Footer.css';
 
