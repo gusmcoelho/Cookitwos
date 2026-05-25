@@ -1,3 +1,4 @@
+// Seção "Sobre Nós"
 import React from 'react';
 import './About.css';
 
