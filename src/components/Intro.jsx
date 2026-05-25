@@ -1,3 +1,4 @@
+// Animação inicial de carregamento (a bolachinha rodando)
 import React, { useEffect, useState, useRef } from 'react';
 import './Intro.css';
 
