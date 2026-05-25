@@ -1,3 +1,4 @@
+// Configuração do empacotador Vite (deixa o site rápido)
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
