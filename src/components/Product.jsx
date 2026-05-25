@@ -1,3 +1,4 @@
+// Detalhes do produto principal (o Cookie)
 import React from 'react';
 import './Product.css';
 
