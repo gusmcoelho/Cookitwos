@@ -1,3 +1,4 @@
+// Seção principal (a primeira que aparece gigante no topo)
 import React, { useState, useEffect, memo } from 'react';
 import './Hero.css';
 
