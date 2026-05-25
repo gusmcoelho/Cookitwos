@@ -1,3 +1,4 @@
+// Botão flutuante do WhatsApp para contato rápido
 import React, { useEffect, useState } from 'react';
 import './WhatsAppButton.css';
 
