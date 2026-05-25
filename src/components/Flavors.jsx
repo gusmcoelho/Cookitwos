@@ -4,28 +4,16 @@ import './Flavors.css';
 const Flavors = () => {
   const flavors = [
     { 
-      name: "Classic Nutella", 
-      desc: "Nossa massa secreta recheada com a legítima Nutella.",
+      name: "Clássico", 
+      desc: "Nossa massa secreta com gotas de chocolate belga.",
       color: "#f4f1ea",
-      tag: "Best Seller"
+      tag: "Tradicional"
     },
     { 
-      name: "Red Velvet", 
-      desc: "Massa aveludada vermelha com gotas de chocolate branco.",
+      name: "Com Nutella", 
+      desc: "Nossa massa secreta recheada com a legítima Nutella.",
       color: "#fdeced",
-      tag: "Premium"
-    },
-    { 
-      name: "Double Chocolate", 
-      desc: "Massa de cacau intenso com dobro de gotas de chocolate.",
-      color: "#f5e8e1",
-      tag: "Intenso"
-    },
-    { 
-      name: "Laka & Oreo", 
-      desc: "Chocolate branco Laka com a crocância do Oreo original.",
-      color: "#eef2f7",
-      tag: "Novo"
+      tag: "Best Seller"
     }
   ];
 
