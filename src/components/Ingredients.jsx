@@ -1,3 +1,4 @@
+// Seção que mostra os ingredientes usados
 import React from 'react';
 import './Ingredients.css';
 
