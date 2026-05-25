@@ -1,3 +1,4 @@
+// Menu de navegação superior (cabeçalho com links)
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import './Navbar.css';
