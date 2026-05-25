@@ -1,3 +1,4 @@
+// Seção mostrando a equipe
 import React, { useState, useEffect, useRef } from 'react';
 import './Team.css';
 
