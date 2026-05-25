@@ -1,3 +1,4 @@
+// Lista dos sabores disponíveis (usa Objetos)
 import React from 'react';
 import './Flavors.css';
 
