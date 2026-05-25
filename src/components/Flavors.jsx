@@ -2,18 +2,21 @@ import React from 'react';
 import './Flavors.css';
 
 const Flavors = () => {
+  const base = import.meta.env.BASE_URL;
   const flavors = [
     { 
       name: "Clássico", 
       desc: "Nossa massa secreta com gotas de chocolate belga.",
       color: "#f4f1ea",
-      tag: "Tradicional"
+      tag: "Tradicional",
+      image: `${base}images/hero_classic_final.png`
     },
     { 
       name: "Com Nutella", 
       desc: "Nossa massa secreta recheada com a legítima Nutella.",
       color: "#fdeced",
-      tag: "Best Seller"
+      tag: "Best Seller",
+      image: `${base}images/hero_nutella_final.png`
     }
   ];
 
@@ -34,7 +37,7 @@ const Flavors = () => {
               style={{ backgroundColor: flavor.color }}
             >
               <div className="flavor-tag">{flavor.tag}</div>
-              <div className={`flavor-image-crop crop-${index}`}></div>
+              <img src={flavor.image} alt={flavor.name} style={{ width: '150px', height: '150px', objectFit: 'contain', marginBottom: '1.5rem', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))' }} />
               <h4>{flavor.name}</h4>
               <p>{flavor.desc}</p>
             </div>
