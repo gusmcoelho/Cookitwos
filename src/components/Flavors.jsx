@@ -15,7 +15,7 @@ const Flavors = () => {
     { 
       name: "Com Nutella", 
       desc: "Nossa massa secreta recheada com a legítima Nutella.",
-      color: "#fdeced",
+      color: "#f5e8e1",
       tag: "Best Seller",
       image: `${base}images/hero_nutella_final.png`
     }
