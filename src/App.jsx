@@ -1,4 +1,4 @@
-// O site de verdade: junta todos os pedaços (componentes) e gerencia animações
+// Arquivo principal que organiza onde cada pedaço do site (Hero, Produtos) vai ficar na tela
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
