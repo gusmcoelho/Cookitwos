@@ -1,4 +1,4 @@
-// O botão de ligar: injeta o código React na tela em branco
+// Arquivo que pega todo o projeto e joga dentro do HTML para aparecer no navegador
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
