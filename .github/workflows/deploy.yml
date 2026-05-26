@@ -1,4 +1,4 @@
-# O robô que publica o site na internet sozinho (GitHub Actions)
+# Script automático que manda o site pro ar no GitHub Pages (workflows)
 # Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
