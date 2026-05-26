@@ -19,11 +19,32 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Escalonamento Responsivo Global (TV, PC, Celular) */
 html { 
   scroll-behavior: smooth; 
-  font-size: 16px; 
+  font-size: 16px; /* Base para PCs normais */
   scroll-padding-top: 100px; 
   overflow-x: hidden;
+}
+
+/* Monitores Ultrawide e TVs (aumenta o tamanho de tudo) */
+@media (min-width: 1920px) {
+  html { font-size: 20px; }
+  :root { --max-width: 1600px; }
+}
+@media (min-width: 2560px) {
+  html { font-size: 26px; }
+  :root { --max-width: 2200px; }
+}
+
+/* Notebooks menores e Tablets */
+@media (max-width: 1024px) {
+  html { font-size: 15px; }
+}
+
+/* Celulares (diminui proporcionalmente para caber bem) */
+@media (max-width: 768px) {
+  html { font-size: 14px; }
 }
 
 html, body {
