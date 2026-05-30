@@ -33,7 +33,6 @@ const HeroVisual = memo(({ images }) => {
 const Hero = memo(() => {
   const base = import.meta.env.BASE_URL;
   const images = [
-    { src: `${base}images/hero_classic_final.png`, color: '#c28e5e' },
     { src: `${base}images/hero_nutella_final.png`, color: '#5d3a1a' }
   ];
 

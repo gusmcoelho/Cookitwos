@@ -6,13 +6,6 @@ const Flavors = () => {
   const base = import.meta.env.BASE_URL;
   const flavors = [
     { 
-      name: "Clássico", 
-      desc: "Nossa massa secreta com gotas de chocolate belga.",
-      color: "#f4f1ea",
-      tag: "Tradicional",
-      image: `${base}images/hero_classic_final.png`
-    },
-    { 
       name: "Com Nutella", 
       desc: "Nossa massa secreta recheada com a legítima Nutella.",
       color: "#f5e8e1",
